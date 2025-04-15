@@ -6,7 +6,7 @@ import (
 )
 
 func GetDiff () (DiffMessage string, error error) {
-	cmd := exec.Command("git", "status")
+	cmd := exec.Command("git", "diff")
 	cmd.Dir = "./"
 	output, err := cmd.Output()
 
