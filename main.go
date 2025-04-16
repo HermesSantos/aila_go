@@ -5,7 +5,6 @@ import (
 	"aila_go/SO"
 	"fmt"
 	"os/exec"
-
 	"github.com/charmbracelet/huh"
 )
 
@@ -14,25 +13,29 @@ var userResponse string
 func main () {
 	diffMessage, err := so.GetDiff()
 	if err != nil {
-    fmt.Println("Error:", err)
-    return
-  }
+		fmt.Println("Error:", err)
+		return
+	}
 
 	geminiResponse, err := geminihandler.GetGeminiCommitMessage(diffMessage)
 	if err != nil {
-    fmt.Println("Error:", err)
-    return
-  }
+		fmt.Println("Error:", err)
+		return
+	}
 
-	fmt.Println("Commit Message: \n", geminiResponse)
+	// fmt.Println("Commit Message: \n", geminiResponse)
+
 
 	form := huh.NewForm(
 		huh.NewGroup(
+			huh.NewNote().
+				Title("Commit message: " + geminiResponse),
 			huh.NewSelect[string]().
-				Title("What do you want to do next?").
+				Title("Choose your burger").
 				Options(
-					huh.NewOption("Keep message and Commit", "Keep"),
-					huh.NewOption("Generate another message", "Generate"),
+				huh.NewOption("Use this message and commit", "Keep"),
+				huh.NewOption("Generate another message", "Generate"),
+				huh.NewOption("Exit", "Generate"),
 				).
 				Value(&userResponse), 
 			),
@@ -43,15 +46,14 @@ func main () {
 	}
 	switch userResponse {
 	case "Keep":
-		cmd := exec.Command("git", "commit", "-m", geminiResponse)
+		cmd := exec.Command("git", "add", ".", "&&", "git", "commit", "-m", geminiResponse)
 		cmd.Dir = "./"
-		fmt.Println(cmd)
 		_, err := cmd.Output()
 		if err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("Error running git commit command:", err)
 			return
 		}
-	// TODO: Add case to generate message
+	// TODO: Add case to regenerate the message
 	case "Generate":
 		geminiResponse, err = geminihandler.GetGeminiCommitMessage(diffMessage)
 		if err != nil {
