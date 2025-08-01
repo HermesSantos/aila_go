@@ -3,6 +3,7 @@ package main
 import (
 	"aila_go/internal"
 	"aila_go/services"
+	"fmt"
 	"log"
 	"os/exec"
 
@@ -46,6 +47,7 @@ func Huh (commitMessage string) {
 	
 	switch apiResponseMessage {
 	case "use":
+		fmt.Println(apiResponseMessage)
 		exec.Command("git", "add", ".").Run()
 		exec.Command("git", "commit", "-m", commitMessage).Run()
 		return
