@@ -3,15 +3,14 @@ package main
 import (
 	"aila_go/internal"
 	"aila_go/services"
-	"fmt"
 	"log"
+	"os/exec"
 
 	"github.com/charmbracelet/huh"
 )
 
 var (
-	burger       string
-	discount     bool
+	apiResponseMessage       string
 )
 
 func main () {
@@ -21,29 +20,37 @@ func main () {
   }
 
 	cfg := services.Load()
-	cfg.GetGeminiCommitMessage(gitDiff)
+	message := cfg.GetGeminiCommitMessage(gitDiff)
+	Huh(message)
 }
 
-func Huh () {
+func Huh (commitMessage string) {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[string]().
-				Title("Choose your burger").
+				Title("Mensagem de Commit: \n" + commitMessage).
 				Options(
-				huh.NewOption("Charmburger Classic", "classic"),
-				huh.NewOption("Chickwich", "chickwich"),
-				huh.NewOption("Fishburger", "fishburger"),
-				huh.NewOption("Charmpossible™ Burger", "charmpossible"),
+				huh.NewOption("Usar Mensagem de Commit", "use"),
+				huh.NewOption("Gerar Outra", "regenerate"),
+				huh.NewOption("Configurações", "configs"),
+				huh.NewOption("Sair", "exit"),
 				).
-				Value(&burger),
+				Value(&apiResponseMessage),
 			),
 		)
+
 	err := form.Run()
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if !discount {
-		fmt.Println("What? You didn’t take the discount?!")
+	
+	switch apiResponseMessage {
+	case "use":
+		exec.Command("git", "add", ".").Run()
+		exec.Command("git", "commit", "-m", commitMessage).Run()
+		return
+	case "exit":
+		break
 	}
+
 }

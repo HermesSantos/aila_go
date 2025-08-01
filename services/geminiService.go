@@ -67,7 +67,7 @@ func Load () *Config {
 	return cfg
 }
 
-func (gc Config) GetGeminiCommitMessage (gitDiff string) {
+func (gc Config) GetGeminiCommitMessage (gitDiff string) string {
 	err := godotenv.Load()
 	if err != nil {
 		log.Panic("Error loading .env file")
@@ -109,8 +109,8 @@ func (gc Config) GetGeminiCommitMessage (gitDiff string) {
 	if len(apiResp.Candidates) > 0 &&
 	len(apiResp.Candidates[0].Content.Parts) > 0 {
 		commitMessage := apiResp.Candidates[0].Content.Parts[0].Text
-		fmt.Println("Mensagem de commit:\n", commitMessage)
+		return commitMessage
 	} else {
-		fmt.Println("Resposta inesperada")
+		return "Resposta inesperada"
 	}
 }
