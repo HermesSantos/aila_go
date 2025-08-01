@@ -47,7 +47,7 @@ func Huh (commitMessage string) {
 	
 	switch apiResponseMessage {
 	case "use":
-		fmt.Println(commitMessage)
+		fmt.Println("Mensagem de commit usada: " + commitMessage)
 		exec.Command("git", "add", ".").Run()
 		exec.Command("git", "commit", "-m", commitMessage).Run()
 		return
