@@ -2,6 +2,7 @@ package main
 
 import (
 	"aila_go/internal"
+	"aila_go/services"
 	"fmt"
 	"log"
 
@@ -18,7 +19,9 @@ func main () {
 	if err != nil {
     log.Fatal(err)
   }
-  fmt.Println(gitDiff)
+
+	cfg := services.Load()
+	cfg.GetGeminiCommitMessage(gitDiff)
 }
 
 func Huh () {
