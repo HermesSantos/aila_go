@@ -1,9 +1,9 @@
 package main
 
 import (
+	"aila_go/internal"
 	"fmt"
 	"log"
-	"os/exec"
 
 	"github.com/charmbracelet/huh"
 )
@@ -14,18 +14,16 @@ var (
 )
 
 func main () {
-	cmd, err := exec.Command("ls", "-la").Output()
+	err, gitDiff := internal.GetGitDiff()
 	if err != nil {
-		fmt.Println("Erro ao executar comando:", err)
-		return
-	}
-	fmt.Println(string(cmd))
+    log.Fatal(err)
+  }
+  fmt.Println(gitDiff)
 }
 
 func Huh () {
 	form := huh.NewForm(
 		huh.NewGroup(
-			// Ask the user for a base burger and toppings.
 			huh.NewSelect[string]().
 				Title("Choose your burger").
 				Options(
@@ -34,7 +32,7 @@ func Huh () {
 				huh.NewOption("Fishburger", "fishburger"),
 				huh.NewOption("Charmpossible™ Burger", "charmpossible"),
 				).
-				Value(&burger), // store the chosen option in the "burger" variable
+				Value(&burger),
 			),
 		)
 	err := form.Run()
