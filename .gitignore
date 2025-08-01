@@ -1,0 +1,47 @@
+# Binários gerados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Diretórios de build
+/build/
+/bin/
+/dist/
+
+# Módulo Go
+go.sum
+
+# Cache e temporários
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Diretórios Go (Go 1.18+)
+*.tmp/
+*.cache/
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ferramentas e testes
+coverage.out
+profile.cov
+
+# Docker
+*.container
+*.pid
+
+# Arquivos locais de configuração
+.env
+.env.*
