@@ -20,12 +20,12 @@ func main () {
     log.Fatal(err)
   }
 
-	cfg := services.Load()
-	message := cfg.GetGeminiCommitMessage(gitDiff)
-	Huh(message)
+	_ = services.Load()
+	message := services.Cfg.GetGeminiCommitMessage(gitDiff)
+	Huh(message, gitDiff)
 }
 
-func Huh (commitMessage string) {
+func Huh (commitMessage, gitDiff string) {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[string]().
@@ -51,6 +51,9 @@ func Huh (commitMessage string) {
 		exec.Command("git", "add", ".").Run()
 		exec.Command("git", "commit", "-m", commitMessage).Run()
 		return
+	case "regenerate":
+		cf := services.Config{}
+		cf.GetGeminiCommitMessage(gitDiff)
 	case "exit":
 		break
 	}

@@ -49,7 +49,7 @@ type Config struct {
 }
 
 var (
-	cfg  *Config
+	Cfg  *Config
 	once sync.Once
 )
 
@@ -59,12 +59,12 @@ func Load () *Config {
 		log.Panic("Error loading .env file")
 	}
 	once.Do(func () {
-		cfg = &Config{
+		Cfg = &Config{
 			ApiUrl: os.Getenv("GEMINI_API_URL") + "?key=" + os.Getenv("GEMINI_API_KEY"),
 			ApiKey: os.Getenv("GEMINI_API_KEY"),
 		}
 	})
-	return cfg
+	return Cfg
 }
 
 func (gc Config) GetGeminiCommitMessage (gitDiff string) string {
