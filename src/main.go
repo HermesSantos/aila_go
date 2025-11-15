@@ -9,7 +9,7 @@ import (
 func main () {
 	config.InitDatabase()
 
-	repository.InitDatabaseRepository(config.DB)
+	repository.InitDatabase(config.DB)
 
 	hasApiKey := repository.VerifyApiToken()
 

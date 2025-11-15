@@ -6,7 +6,7 @@ import (
 )
 
 var db *sql.DB
-func InitDatabaseRepository (receive_db *sql.DB) {
+func InitDatabase (receive_db *sql.DB) {
 	db = receive_db
 }
 
