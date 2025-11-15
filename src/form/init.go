@@ -37,13 +37,13 @@ func InitForm () {
 
 func WhatToDoForm () {
 	style := lipgloss.NewStyle().
-	Foreground(lipgloss.Color("#00FF00")) // verde, pode mudar
+	Foreground(lipgloss.Color("#ff009400"))
 	coloredMsg := style.Render(commitMessage)
 
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[int]().
-			Title("Mensagem de commit: " + coloredMsg + "\nGostaria de continuar com a mensagem de commit?").
+			Title("Mensagem de commit:\n" + coloredMsg + "\nGostaria de continuar com a mensagem de commit?").
 			Options(
 				huh.NewOption("Usar essa", 0),
 				huh.NewOption("Gerar outra", 1),
