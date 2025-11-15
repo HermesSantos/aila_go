@@ -58,7 +58,7 @@ func WhatToDoForm () {
 	case 0:
 		service.GitAndCommit(commitMessage)
 	case 1:
-		// TODO: Implementar a geracao de outra mensagem de commit
+		InitForm()
 	case 2:
 		os.Exit(0)
 	}
