@@ -38,7 +38,7 @@ func WhatToDoForm () {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[int]().
-			Title("Gostaria de continuar com a mensagem de commit?").
+			Title("Mensagem de commit: " + commitMessage + "\nGostaria de continuar com a mensagem de commit?").
 			Options(
 				huh.NewOption("Usar essa", 0),
 				huh.NewOption("Gerar outra", 1),

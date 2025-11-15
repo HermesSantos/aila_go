@@ -40,7 +40,6 @@ type (
 
 
 func GetGeminiCommitService (diff string) (error, string) {
-	fmt.Println("Gerando mensagem de commit ...")
 	apiKey, err := repository.GetApiKey()
 	if err != nil {
 		fmt.Println(err)
