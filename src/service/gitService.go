@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"os/exec"
 )
 
@@ -14,6 +13,21 @@ func GetDiff () (error, string) {
 	}
 
 	diff := string(out)
-	fmt.Println("diff", diff)
+
 	return nil, diff
+}
+
+func GitAndCommit(message string) (string, error) {
+	addCmd := exec.Command("git", "add", ".")
+	if out, err := addCmd.CombinedOutput(); err != nil {
+		return string(out), err
+	}
+
+	commitCmd := exec.Command("git", "commit", "-m", message)
+	out, err := commitCmd.CombinedOutput()
+	if err != nil {
+		return string(out), err
+	}
+
+	return string(out), nil
 }

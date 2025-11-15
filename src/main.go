@@ -14,7 +14,7 @@ func main () {
 	hasApiKey := repository.VerifyApiToken()
 
 	if !hasApiKey {
-		form.AddApiKey(config.DB)
+		form.AddApiKeyForm(config.DB)
 	} else {
 		form.InitForm()
 	}
