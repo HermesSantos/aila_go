@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/charmbracelet/huh"
+	"github.com/charmbracelet/lipgloss"
 )
 
 var (
@@ -35,10 +36,14 @@ func InitForm () {
 }
 
 func WhatToDoForm () {
+	style := lipgloss.NewStyle().
+	Foreground(lipgloss.Color("#00FF00")) // verde, pode mudar
+	coloredMsg := style.Render(commitMessage)
+
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[int]().
-			Title("Mensagem de commit: " + commitMessage + "\nGostaria de continuar com a mensagem de commit?").
+			Title("Mensagem de commit: " + coloredMsg + "\nGostaria de continuar com a mensagem de commit?").
 			Options(
 				huh.NewOption("Usar essa", 0),
 				huh.NewOption("Gerar outra", 1),
