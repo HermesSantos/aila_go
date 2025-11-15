@@ -1,0 +1,39 @@
+# Binários compilados
+/aila
+/aila.exe
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Diretórios de build
+/bin/
+/build/
+/dist/
+
+# Arquivos temporários
+*.tmp
+*.log
+*.out
+
+# Dependências do Go geradas automaticamente
+/go.sum
+
+# SQLite database
+/database.db
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Arquivos de editor/IDE
+.vscode/
+.idea/
+*.swp
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
