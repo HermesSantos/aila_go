@@ -20,7 +20,8 @@ func WhatToDoForm () {
 			Options(
 				huh.NewOption("Usar essa", 0),
 				huh.NewOption("Gerar outra", 1),
-				huh.NewOption("Sair", 2),
+				huh.NewOption("Editar Mensagem", 2),
+				huh.NewOption("Sair", 3),
 			).
 			Value(&WhatToDoSelected),
 		),
@@ -33,6 +34,8 @@ func WhatToDoForm () {
 	case 1:
 		InitForm()
 	case 2:
+		InitForm()
+	case 3:
 		os.Exit(0)
 	}
 }
