@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 )
 type (
 	Part struct {
@@ -40,6 +39,13 @@ type (
 
 
 func GetGeminiCommitService (diff string) (error, string) {
+
+	commitLanguage, err := repository.GetCommitLanguage()
+	if err != nil {
+    fmt.Println("Erro ao pegar linguagem do commit, valor padrão será em inglês", err)
+		commitLanguage = "English"
+  }
+
 	apiKey, err := repository.GetApiKey()
 	if err != nil {
 		fmt.Println(err)
@@ -53,7 +59,7 @@ func GetGeminiCommitService (diff string) (error, string) {
 					{
 						Text: fmt.Sprintf(
 							"Me retorne em %s, sem caracteres especiais como aspas ou quebra de linha, uma mensagem de commit curta que mostre o que foi alterado nesse commit: %s",
-							os.Getenv("COMMIT_LANGUAGE"),
+							commitLanguage,
 							diff,
 						),
 					},

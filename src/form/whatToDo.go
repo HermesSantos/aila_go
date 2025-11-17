@@ -21,7 +21,8 @@ func WhatToDoForm () {
 				huh.NewOption("Usar essa", 0),
 				huh.NewOption("Gerar outra", 1),
 				huh.NewOption("Editar Mensagem", 2),
-				huh.NewOption("Sair", 3),
+				huh.NewOption("Configurações", 3),
+				huh.NewOption("Sair", 4),
 			).
 			Value(&WhatToDoSelected),
 		),
@@ -34,9 +35,11 @@ func WhatToDoForm () {
 	case 1:
 		InitForm()
 	case 2:
-		EditCommitMessageForm()
+		editCommitMessageForm()
 		service.GitAndCommit(commitMessage)
 	case 3:
+		configureForm()
+	case 4:
 		os.Exit(0)
 	}
 }

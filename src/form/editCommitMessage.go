@@ -2,7 +2,7 @@ package form
 
 import "github.com/charmbracelet/huh"
 
-func EditCommitMessageForm () {
+func editCommitMessageForm () {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewText().
