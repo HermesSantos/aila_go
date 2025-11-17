@@ -18,12 +18,12 @@ func configureForm () {
 	).
 	Value(&option)
 
+	form.Run()
+
 	switch option {
 	case "language":
 		changeLanguage()
 	}
-
-	form.Run()
 }
 
 func changeLanguage () {
