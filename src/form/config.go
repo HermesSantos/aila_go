@@ -1,6 +1,8 @@
 package form
 
 import (
+	"aila/src/repository"
+
 	"github.com/charmbracelet/huh"
 )
 
@@ -37,4 +39,5 @@ func changeLanguage () {
 		Value(&selectedLanguage)
 
 	form.Run()
+	repository.SetCommitLanguage(selectedLanguage)
 }
