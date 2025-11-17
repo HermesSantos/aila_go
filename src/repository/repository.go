@@ -30,7 +30,7 @@ func VerifyApiToken () bool {
 }
 
 func SetCommitLanguage (commitLanguage string) (string, error) {
-	_, err := db.Exec("INSERT INTO user_data (api_key) VALUES (?)", commitLanguage)
+	_, err := db.Exec("INSERT INTO user_data (commit_language) VALUES (?)", commitLanguage)
 	if err != nil {
 		log.Fatal(err)
 		return "", err
