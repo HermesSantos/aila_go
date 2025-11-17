@@ -34,7 +34,7 @@ func WhatToDoForm () {
 	case 1:
 		InitForm()
 	case 2:
-		InitForm()
+		EditCommitMessageForm()
 	case 3:
 		os.Exit(0)
 	}
