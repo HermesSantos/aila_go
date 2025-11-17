@@ -35,6 +35,7 @@ func WhatToDoForm () {
 		InitForm()
 	case 2:
 		EditCommitMessageForm()
+		service.GitAndCommit(commitMessage)
 	case 3:
 		os.Exit(0)
 	}
