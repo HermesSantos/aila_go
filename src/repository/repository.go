@@ -81,6 +81,10 @@ func GetApiKey() (string, error) {
 	var apiKey string
 
 	err := db.QueryRow("SELECT api_key FROM user_data LIMIT 1").Scan(&apiKey)
+	if err == sql.ErrNoRows {
+		return "", err
+	}
+
 	if err != nil {
 		return "", err
 	}
