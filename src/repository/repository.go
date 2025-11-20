@@ -44,10 +44,8 @@ func GetCommitLanguage() (string, error) {
 
 	err := db.QueryRow("SELECT commit_language FROM user_data LIMIT 1").Scan(&commitLanguage)
 	if err == nil {
-		if commitLanguage == "" {
-			commitLanguage = "english"
-			_, _ = db.Exec(`UPDATE user_data SET commit_language = ?`, commitLanguage)
-		}
+		commitLanguage = "english"
+		_, _ = db.Exec(`UPDATE user_data SET commit_language = ?`, commitLanguage)
 		return commitLanguage, nil
 	}
 
