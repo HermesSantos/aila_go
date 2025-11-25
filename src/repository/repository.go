@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 	"log"
 	"strings"
 )
@@ -43,6 +44,7 @@ func GetCommitLanguage() (string, error) {
 	var commitLanguage string
 
 	err := db.QueryRow("SELECT commit_language FROM user_data LIMIT 1").Scan(&commitLanguage)
+	fmt.Println("err", err)
 	if err == nil {
 		commitLanguage = "english"
 		_, _ = db.Exec(`UPDATE user_data SET commit_language = ?`, commitLanguage)
