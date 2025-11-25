@@ -43,6 +43,7 @@ func GetGeminiCommitService (diff string) (error, string) {
 	commitLanguage, err := repository.GetCommitLanguage()
 	if err != nil {
     fmt.Println("Erro ao pegar linguagem do commit, valor padrão será em inglês", err)
+		repository.SetCommitLanguage("English")
 		commitLanguage = "English"
   }
 
