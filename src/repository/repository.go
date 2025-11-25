@@ -3,7 +3,6 @@ package repository
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"log"
 	"strings"
 )
@@ -42,20 +41,18 @@ func SetCommitLanguage (commitLanguage string) (string, error) {
 
 func GetCommitLanguage() (string, error) {
 	var commitLanguage string
+	err := db.QueryRow("SELECT commit_language FROM user_data").Scan(&commitLanguage)
 
-	err := db.QueryRow("SELECT commit_language FROM user_data LIMIT 1").Scan(&commitLanguage)
-	fmt.Println("err", err)
-	if err == nil {
-		commitLanguage = "english"
-		_, _ = db.Exec(`UPDATE user_data SET commit_language = ?`, commitLanguage)
-		return commitLanguage, nil
-	}
-
-	if strings.Contains(err.Error(), "no such column") {
+	if err != nil && strings.Contains(err.Error(), "no such column") {
 		_, alterErr := db.Exec(`ALTER TABLE user_data ADD COLUMN commit_language TEXT`)
 		if alterErr != nil {
 			return "", alterErr
 		}
+		_, insertErr := db.Exec(`INSERT INTO user_data (commit_language) VALUES ('english')`)
+		if insertErr != nil {
+			return "", insertErr
+		}
+		return "english", nil
 	}
 
 	if errors.Is(err, sql.ErrNoRows) {
@@ -66,7 +63,11 @@ func GetCommitLanguage() (string, error) {
 		return "english", nil
 	}
 
-	return "", err
+	if err != nil {
+		return "", err
+	}
+
+	return commitLanguage, nil
 }
 
 func InsertApiKey (apiKey string) {
