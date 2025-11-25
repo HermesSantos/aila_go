@@ -2,6 +2,7 @@ package config
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -26,6 +27,7 @@ func InitDatabase() {
 
 	if isGoRun {
 		wd, _ := os.Getwd()
+		fmt.Println(wd)
 		dbPath = filepath.Join(wd, "database.db")
 	} else {
 		dbPath = filepath.Join(execDir, "database.db")
