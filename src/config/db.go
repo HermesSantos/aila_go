@@ -20,7 +20,6 @@ func InitDatabase() {
 	}
 
 	execDir := filepath.Dir(execPath)
-	fmt.Println("execDir", execDir)
 
 	isGoRun := strings.Contains(execDir, "go-build")
 
@@ -31,7 +30,18 @@ func InitDatabase() {
 		fmt.Println(wd)
 		dbPath = filepath.Join(wd, "database.db")
 	} else {
-		dbPath = filepath.Join(execDir, "database.db")
+		configDir, err := os.UserConfigDir()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		appDir := filepath.Join(configDir, "aila")
+
+		if mkErr := os.MkdirAll(appDir, 0755); mkErr != nil {
+			log.Fatal(mkErr)
+		}
+
+		dbPath = filepath.Join(appDir, "database.db")
 	}
 
 	DB, err = sql.Open("sqlite3", dbPath)
