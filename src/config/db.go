@@ -20,6 +20,7 @@ func InitDatabase() {
 	}
 
 	execDir := filepath.Dir(execPath)
+	fmt.Println("execDir", execDir)
 
 	isGoRun := strings.Contains(execDir, "go-build")
 
