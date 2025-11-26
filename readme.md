@@ -1,5 +1,9 @@
 # Aila – Commit Message Generator (Go)
 
+---
+
+# 🇺🇸 English
+
 Aila is a Go-based utility that automatically generates commit messages using the Gemini model.  
 Its goal is to standardize, streamline, and improve the quality of commit messages across Git projects.
 
@@ -32,7 +36,13 @@ sudo mv aila /usr/local/bin/aila
 sudo chmod +x /usr/local/bin/aila
 ```
 
+
+
 # Aila – Commit Message Generator (Go)
+
+---
+
+# 🇧🇷 Português
 
 Aila é um utilitário em Go para gerar mensagens de commit automaticamente usando o modelo Gemini.
 O objetivo é padronizar, acelerar e melhorar a qualidade das mensagens de commit em projetos Git.
