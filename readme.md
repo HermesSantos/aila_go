@@ -23,14 +23,14 @@ Its goal is to standardize, streamline, and improve the quality of commit messag
 git clone https://github.com/usuario/aila
 cd aila
 go build -o aila
+```
 
 ## Optional: Install globally
 
+```bash
 sudo mv aila /usr/local/bin/aila
 sudo chmod +x /usr/local/bin/aila
-
-
-~~~~~~~~~~~~~~~~~~~~~~
+```
 
 # Aila – Commit Message Generator (Go)
 
@@ -57,9 +57,11 @@ O objetivo é padronizar, acelerar e melhorar a qualidade das mensagens de commi
 git clone https://github.com/usuario/aila
 cd aila
 go build -o aila
+```
 
 ## Opcional para uso global
 
+```bash
 sudo mv aila /usr/local/bin/aila
 sudo chmod +x /usr/local/bin/aila
-
+```
